@@ -1,4 +1,4 @@
-package com.rambalidev.kaarten;
+package com.example.kaarten;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -34,7 +34,6 @@ public class opgeslagen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.opgeslagen);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.opgeslagen);
         getSupportActionBar().hide();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -134,9 +133,6 @@ public class opgeslagen extends AppCompatActivity {
 
     public void Kiesmenu(View view) {
         if (force == false) {
-            Intent i = new Intent(this, Kiesmenu.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(i);
             finish();
         }
     }
@@ -282,9 +278,8 @@ public class opgeslagen extends AppCompatActivity {
                 t2.setLayoutParams(p);
                 force = false;
                 Intent i = new Intent(this, vierspelers.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(i);
                 finish();
+                startActivity(i);
             }
         }
         else {
@@ -323,9 +318,8 @@ public class opgeslagen extends AppCompatActivity {
                 t2.setLayoutParams(p);
                 force = false;
                 Intent i = new Intent(this, zesspelers.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(i);
                 finish();
+                startActivity(i);
             }
 
         }
@@ -501,9 +495,8 @@ public class opgeslagen extends AppCompatActivity {
             mEdit.setAlpha(1);
             force = false;
             Intent i = new Intent(this, vierspelers.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(i);
             finish();
+            startActivity(i);
         }
         else {
             SharedPreferences pref = getSharedPreferences("standaard", MODE_PRIVATE);
@@ -512,9 +505,8 @@ public class opgeslagen extends AppCompatActivity {
             editor2.commit();
             force = false;
             Intent i = new Intent(this, zesspelers.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(i);
             finish();
+            startActivity(i);
         }
     }
     public void openver(View view){
@@ -594,15 +586,5 @@ public class opgeslagen extends AppCompatActivity {
         buttoncreator6();
         buttoncreator4();
         (new Handler()).postDelayed(this::r, 3000);
-    }
-
-
-
-    @SuppressLint("MissingSuperCall")
-    @Override
-    public void onBackPressed()
-    {
-
-        // super.onBackPressed(); // Comment this super call to avoid calling finish() or fragmentmanager's backstack pop operation.
     }
 }

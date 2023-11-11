@@ -1,5 +1,6 @@
-package com.rambalidev.kaarten;
+package com.example.kaarten;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.ValueAnimator;
@@ -28,10 +29,10 @@ public class zesspelers extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.zesspelers);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.zesspelers);
         getSupportActionBar().hide();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         ImageButton opslsl = (ImageButton) findViewById(R.id.imageButton4);
         opslsl.setEnabled(false);
@@ -113,13 +114,18 @@ public class zesspelers extends AppCompatActivity {
             String z = Integer.toString(n);
             tn.setText("Score: " + z);
         }
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (force == false) {
+                    finish();
+                }
+            }
+        });
     }
 
     public void Kiesmenu(View view) {
         if (force == false) {
-            Intent i = new Intent(this, Kiesmenu.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(i);
             finish();
         }
     }
@@ -507,12 +513,4 @@ public class zesspelers extends AppCompatActivity {
     }
 
 
-
-    @SuppressLint("MissingSuperCall")
-    @Override
-    public void onBackPressed()
-    {
-
-        // super.onBackPressed(); // Comment this super call to avoid calling finish() or fragmentmanager's backstack pop operation.
-    }
 }
